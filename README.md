@@ -8,9 +8,8 @@ The first data structure that comes to mind when building a morse dictionary is 
 
 In addition to maps and arrays, I want to try storing the information in vectors, which seem a good compromise between the flexibility of maps and the small footprint of arrays, and unordered_maps, which may give a faster search time than maps in this case.
 
-|---|---|
 | Data structure | Don Quijote to morse in seconds |
-|---|---|
+| --- | --- |
 | Arrays | ~0.170 s |
 | Map | ~0.525 s |
 | Vectors | Work in progress |
