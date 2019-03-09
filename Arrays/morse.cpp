@@ -12,12 +12,19 @@ void Morse::textToMorse(std::string *text) {
 }
 
 int Morse::charToMorse(char *c) {
-    int i = 0;
-    while (alphabet_[i] != *c) {
-        i++;
-        if (i == ALPHABET_SIZE) {
-            return ALPHABET_SIZE-1;
+    int low = 0;
+    int high = ALPHABET_SIZE-1;
+    while (low <= high) {
+        int middle = (low + high) / 2;
+        if (alphabet_[middle] == *c) {
+            return middle;
+        }
+        if (alphabet_[middle] < *c) { // In the upper half
+            low = middle + 1;
+        }
+        else {
+            high = middle - 1;
         }
     }
-    return i;
+    return ALPHABET_SIZE-1;
 }

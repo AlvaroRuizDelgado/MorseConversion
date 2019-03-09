@@ -7,8 +7,8 @@ int main(void) {
     
     Morse morse;
 
-    // std::string example ("Will proceed to process a file.");
-    // morse.textToMorse(&example);
+    std::string example ("Will proceed to process a file.");
+    morse.textToMorse(&example);
 
     std::ifstream t("../long.txt");
     std::stringstream buffer;
