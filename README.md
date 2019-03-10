@@ -17,6 +17,7 @@ In addition to maps and arrays, I wanted to try storing the information in vecto
 | Map | ~540 ms |
 | Vectors (hard-code init) | ~570 ms |
 | Vectors (load from file) | ~590 ms |
+
 _Note: the above times will vary depending on the machine, but their ratio should remain similar._
 
 As expected the double array method is the fastest, and unordered_map is indeed faster than map for this application.
