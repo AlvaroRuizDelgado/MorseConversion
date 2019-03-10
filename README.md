@@ -1,4 +1,4 @@
-# Morse library
+# Containers speed comparison
 
 This repository uses text-to-morse conversion as a simple example to test the search performance of different data structures. I tested multiple ways to store the morse translation table, and measured the efficiency of each of them by checking how long it takes them to translate the original version of "Don Quixote" ([downloaded from gutenberg.org](http://www.gutenberg.org/ebooks/2000) and stored in "long.txt") from Spanish to Morse.
 
@@ -8,16 +8,20 @@ The first data structure that comes to mind when building a dictionary is a map.
 
 In addition to maps and arrays, I wanted to try storing the information in vectors, which seemed like a good compromise between the flexibility of maps and the small footprint of arrays, and also in unordered_maps, which I reckon may give a faster search time than maps in this case, even if at the cost of a larger memory footprint.
 
-| Data structure | Don Quixote to morse in seconds |
+| Data structure | Don Quixote to morse in ms |
 | --- | --- |
-| Arrays | ~0.115 s |
-| Unordered map | ~0.370 s |
-| Map | ~0.540 s |
-| Vectors | ~0.590 s |
-
-Note: the above times will vary depending on the machine, but their ratio should remain similar.
+| Arrays (ASCII subtraction search) | ~65 ms |
+| Arrays (binary search) | ~115 ms |
+| Arrays (brute force search) | ~170 ms |
+| Unordered map | ~370 ms |
+| Map | ~540 ms |
+| Vectors (hard-code init) | ~570 ms |
+| Vectors (load from file) | ~590 ms |
+_Note: the above times will vary depending on the machine, but their ratio should remain similar._
 
 As expected the double array method is the fastest, and unordered_map is indeed faster than map for this application.
+
+For the double array method I tried a few different search methdos. The fastest method was to take advantage of the proximity of numbers and alphabet characters in the ASCII table and simply subtract the ASCII for '0' from the requested character. In this case the array needs to have a few dummy entries to fill the gap between '9' and 'A', so it becomes a bit larger (7 extra characters -> 19% larger). In other data sets without this convenient ordering, binary search and brute force can still perform well with few enough entries.
 
 I was surprised to see the poor performance of the vector method in the above experiment. In the end the search of the element in vector form is not as straightforward as I thought. The search I do in both the double array and the double vector methods is to find the position of the requested character in the alphabet container and return the string in that position in the other container (morse). As std::vector<char>::iterator is not the same as std::vector<std::string>::iterator there is an extra conversion step that may impact performance.
 

@@ -12,19 +12,26 @@ void Morse::textToMorse(std::string *text) {
 }
 
 int Morse::charToMorse(char *c) {
-    int low = 0;
-    int high = ALPHABET_SIZE-1;
-    while (low <= high) {
-        int middle = (low + high) / 2;
-        if (alphabet_[middle] == *c) {
-            return middle;
-        }
-        if (alphabet_[middle] < *c) { // In the upper half
-            low = middle + 1;
-        }
-        else {
-            high = middle - 1;
-        }
+    int i = (int) (*c - '0');
+    if (0 < i && i < ALPHABET_SIZE) {
+        return i;
     }
     return ALPHABET_SIZE-1;
+
+    // BINARY SEARCH (~ twice as slow)
+    // int low = 0;
+    // int high = ALPHABET_SIZE-1;
+    // while (low <= high) {
+    //     int middle = (low + high) / 2;
+    //     if (alphabet_[middle] == *c) {
+    //         return middle;
+    //     }
+    //     if (alphabet_[middle] < *c) { // In the upper half
+    //         low = middle + 1;
+    //     }
+    //     else {
+    //         high = middle - 1;
+    //     }
+    // }
+    // return ALPHABET_SIZE-1;
 }
