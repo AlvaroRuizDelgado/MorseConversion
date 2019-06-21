@@ -2,6 +2,8 @@
 
 This repository uses text-to-morse conversion as a simple example to test the search performance of different data structures. I tested multiple ways to store the morse translation table, and measured the efficiency of each of them by checking how long it takes them to translate the original version of "Don Quixote" ([downloaded from gutenberg.org](http://www.gutenberg.org/ebooks/2000) and stored in "long.txt") from Spanish to Morse.
 
+To measure the time it takes for the operation to complete I use a simple structure Timer (defined in "timer.hpp") that uses RAII principles to compute the execution time through the \<chrono\> library.
+
 ## Methods and comparison
 
 The first data structure that comes to mind when building a dictionary is a map. However, given that the code is small and unlikely to change, storing the data in an array may prove to be more efficient, especially when thinking of this library as a part of a larger program, where the small size of a pair of arrays may make it more likely that the data stays in the cache memory.

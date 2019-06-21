@@ -2,8 +2,11 @@
 #include <fstream>
 #include <sstream>
 #include "morse.hpp"
+#include "timer.hpp"
 
-int main(void) {
+int main(void)
+{
+    Timer timer;
     
     Morse morse;
 

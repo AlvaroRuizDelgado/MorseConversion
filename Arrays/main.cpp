@@ -2,12 +2,16 @@
 #include <fstream>
 #include <sstream>
 #include "morse.hpp"
+#include "timer.hpp"
 
-int main(void) {
-    
+int main(void)
+{
+    Timer timer;
+
     Morse morse;
 
     std::string example ("Will proceed to process a file.");
+    std::cout << example << std::endl;
     morse.textToMorse(&example);
 
     std::ifstream t("../long.txt");
