@@ -7,8 +7,9 @@ struct Timer
     std::chrono::high_resolution_clock::time_point end;
     std::chrono::duration<float> duration;
 
-    Timer()
+    Timer(std::string description = "Timer")
     {
+        description_ = description;
         start = std::chrono::high_resolution_clock::now();
     }
 
@@ -18,6 +19,9 @@ struct Timer
         duration = end - start;
 
         float ms = duration.count() * 1000.f;
-        std::cout << ms << " ms" << std::endl;
+        std::cout << description_ << " took " << ms << " ms" << std::endl;
     }
+
+private:
+    std::string description_;
 };

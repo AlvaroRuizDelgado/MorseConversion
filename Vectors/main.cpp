@@ -6,7 +6,7 @@
 
 int main(void)
 {
-    Timer timer;
+    Timer timer("Vector morse");
     
     Morse morse;
 
