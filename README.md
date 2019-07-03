@@ -45,3 +45,9 @@ Compilation and execution of each example:
 g++ *.cpp -o test.exe
 ./test.exe
 ```
+
+Or using cmake instead:
+```bash
+cmake -D CMAKE_CXX_COMPILER=g++
+cmake --build .
+```
